@@ -1,14 +1,22 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+// JWT Configure #niwa
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Support\Carbon;
+
+
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+
+    protected $carbon, $now;
+    protected $primaryKey = "id";
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +27,9 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    // protected $guarded = [
+    //     'id', 'created_at', 'updated_at',
+    // ];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -36,4 +47,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * JWT Configure #niwa
+     */
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }
