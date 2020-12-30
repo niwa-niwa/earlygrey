@@ -15,6 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
     ],
 
@@ -113,5 +114,15 @@ return [
     */
 
     'password_timeout' => 10800,
+
+    /*
+     *  API with JWT Authentication #niwa
+     */
+    'api' => [
+        'driver' => 'token',
+        'driver' => 'jwt',
+        'provider' => 'users',
+        'hash' => false,
+    ]
 
 ];
