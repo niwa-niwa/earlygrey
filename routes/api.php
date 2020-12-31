@@ -23,7 +23,7 @@ Route::prefix('v1')->group(function(){
     Route::group([
         "middleware" => 'api',
         'prefix' => 'auth',
-    ], function(){
+    ], function( $router ){
         Route::post('/register', 'Api\v1\RegisterController@register');
         Route::post('/login', 'Api\v1\AuthController@login');
         Route::post('/logout', 'Api\v1\AuthController@logout');

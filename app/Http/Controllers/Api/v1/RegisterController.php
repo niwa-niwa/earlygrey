@@ -5,8 +5,7 @@ namespace App\Http\Controllers\Api\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistUserRequest;
 use App\Models\User;
-use App\Services\ApiTokenCreateService;
-
+// use App\Services\ApiTokenCreateService;
 
 class RegisterController extends Controller
 {
@@ -20,8 +19,12 @@ class RegisterController extends Controller
 
         $user = User::find($user->id);
         //TODO send confirm-email after registration
-        $ApiTokenCreateService = new ApiTokenCreateService($user);
+        // $ApiTokenCreateService = new ApiTokenCreateService($user);
+        // return $ApiTokenCreateService->respondWithToken();
 
-        return $ApiTokenCreateService->respondWithToken();
+        return response()->json([
+            'success' => True,
+            'data' => $user,
+        ], 200);
     }
 }

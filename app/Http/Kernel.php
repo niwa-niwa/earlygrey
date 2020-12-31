@@ -65,8 +65,7 @@ class Kernel extends HttpKernel
         /*
         * JWT Configure #niwa
         */
-        'jwt_auth' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class,
-        'jwt_refresh' => \Tymon\JWTAuth\Http\Middleware\RefreshToken::class,
+        'auth.jwt' => \Tymon\JWTAuth\Http\Middleware\Authenticate::class, // is it not necessary?
 
     ];
 
